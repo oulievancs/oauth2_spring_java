@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration>
+
+<!--
+  <appender name="dataAccessLogger" class="org.apache.log4j.ConsoleAppender">
+    <param name="target" value="System.out"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="conversionPattern" value="%-25.25d{yyyy-MM-dd HH:mm:ss:SSS} %-10.10p %m%n"/>
+    </layout>
+  </appender>
+
+  <logger name="log4jtestdesc">
+    <level value="debug"/>
+    <appender-ref ref="dataAccessLogger"/>
+  </logger>
+
+  <root>
+    <priority value ="debug" />
+    <appender-ref ref="dataAccessLogger"/>
+  </root>
+-->
+
+<!--
+<param name="sql" value="INSERT INTO OPENPOSSALES_LOG (USER_ID, DATE1, LOGGER,
+       LEVEL,  MESSAGE ) VALUES ('%x', '%d{yyyy-MM-dd}', '%C', '%p', '%m')"/>
+-->
+
+<!--
+  <appender name="appenderInfo1" class="org.apache.log4j.jdbc.JDBCAppender">
+    <param name="Driver" value="com.mysql.jdbc.Driver"/>
+    <param name="URL" value="jdbc:mysql://localhost:3306/mysql"/>
+    <param name="User" value="root"/>
+    <param name="Password" value="admin"/>
+    <param name="sql" value="INSERT INTO OPENPOSSALES_LOG (DATE1, LEVEL,  MESSAGE)
+    VALUES ('%d{yyyy-MM-dd HH:mm:ss:SSS}',  '%p', '%m')"/>
+
+    <param name="threshold" value="debug"/>
+
+    <filter class="org.apache.log4j.varia.LevelRangeFilter">
+      <param name="LevelMin" value="INFO"/>
+      <param name="LevelMax" value="INFO"/>
+      <param name="acceptOnMatch" value="true"/>
+    </filter>
+
+    </appender>
+  -->
+
+<!--
+  <appender name="appenderInfo1" class="org.apache.log4j.DailyRollingFileAppender">
+    <param name="file" value="/GANDALF/LOG/LOG4J/OPSW/OPSWWEBAPP/logInfo"/>
+    <param name="threshold" value="debug"/>
+    <param name="immediateFlush" value="true"/>
+    <param name="append" value="true"/>
+    <param name="datePattern" value="'_'yyyy_MM_dd"/>
+
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="conversionPattern" value="%-25.25d{yyyy-MM-dd HH:mm:ss:SSS} %-10.10p %m%n"/>
+    </layout>
+
+    <filter class="org.apache.log4j.varia.LevelRangeFilter">
+      <param name="LevelMin" value="INFO"/>
+      <param name="LevelMax" value="INFO"/>
+      <param name="acceptOnMatch" value="true"/>
+    </filter>
+
+  </appender>
+-->
+<!--
+  <appender name="appenderError1" class="org.apache.log4j.DailyRollingFileAppender">
+    <param name="file" value="/GANDALF/LOG/LOG4J/OPSW/OPSWWEBAPP/logError"/>
+    <param name="threshold" value="debug"/>
+    <param name="immediateFlush" value="true"/>
+    <param name="append" value="true"/>
+    <param name="datePattern" value="'_'yyyy_MM_dd"/>
+
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="conversionPattern" value="%-25.25d{yyyy-MM-dd HH:mm:ss:SSS} %-10.10p %m%n"/>
+    </layout>
+
+    <filter class="org.apache.log4j.varia.LevelRangeFilter">
+      <param name="LevelMin" value="ERROR"/>
+      <param name="LevelMax" value="ERROR"/>
+      <param name="acceptOnMatch" value="true"/>
+    </filter>
+  </appender>
+-->
+
+  <appender name="appenderInfo1" class="org.apache.log4j.RollingFileAppender">
+    <param name="file" value="/GANDALF/LOG/LOG4J/OPSW/OPSWOAUTHSERVER/logInfo"/>
+    <param name="threshold" value="debug"/>
+    <param name="immediateFlush" value="true"/>
+    <param name="append" value="true"/>
+    <param name="MaxFileSize" value="2MB"/>
+    <param name="MaxBackupIndex" value="10"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="conversionPattern" value="%-25.25d{yyyy-MM-dd HH:mm:ss:SSS} %-10.10p %m%n"/>
+    </layout>
+    <filter class="org.apache.log4j.varia.LevelRangeFilter">
+      <param name="LevelMin" value="INFO"/>
+      <param name="LevelMax" value="INFO"/>
+      <param name="acceptOnMatch" value="true"/>
+    </filter>
+  </appender>
+
+  <appender name="appenderError1" class="org.apache.log4j.RollingFileAppender">
+    <param name="file" value="/GANDALF/LOG/LOG4J/OPSW/OPSWOAUTHSERVER/logError"/>
+    <param name="threshold" value="error"/>
+    <param name="immediateFlush" value="true"/>
+    <param name="append" value="true"/>
+    <param name="MaxFileSize" value="2MB"/>
+    <param name="MaxBackupIndex" value="10"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="conversionPattern" value="%-25.25d{yyyy-MM-dd HH:mm:ss:SSS} %-10.10p %m%n"/>
+    </layout>
+    <filter class="org.apache.log4j.varia.LevelRangeFilter">
+      <param name="LevelMin" value="ERROR"/>
+      <param name="LevelMax" value="ERROR"/>
+      <param name="acceptOnMatch" value="true"/>
+    </filter>
+  </appender>
+
+<!--
+opsw.core.logging
+-->
+  <logger name="opsw.apps.web.OpswOAuth.logger" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="appenderInfo1"/>  
+    <appender-ref ref="appenderError1"/>
+  </logger>
+
+
+  <!--
+  <appender name="dest" class="org.apache.log4j.FileAppender">
+    <param name="file" value="/1/log.txt"/>
+    <param name="threshold" value="debug"/>
+    <param name="immediateFlush" value="true"/>
+    <param name="append" value="false"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="conversionPattern" value="%-25.25d{yyyy-MM-dd HH:mm:ss:SSS} %-10.10p %m%n"/>
+    </layout>
+  </appender>
+  <logger name="log4jtestdesc" additivity="false">
+    <level value="debug"/>
+    <appender-ref ref="dest"/>
+  </logger>
+  -->
+
+</log4j:configuration>
